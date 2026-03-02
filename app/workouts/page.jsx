@@ -57,7 +57,7 @@ export default function WorkoutsPage() {
   };
 
   return (
-    <div className="min-h-screen text-zinc-800" style={{ backgroundColor: "#f7f7f5", fontFamily: "'Georgia', serif" }}>
+    <div className="min-h-screen text-zinc-800" style={{ backgroundColor: "#f7f7f5"}}>
 
       {/* Navbar */}
       <nav className="flex items-center justify-between px-8 py-5 bg-white border-b border-zinc-100">
@@ -65,6 +65,7 @@ export default function WorkoutsPage() {
         <div className="flex items-center gap-6 text-sm text-zinc-500">
           <a href="/workouts" className="text-zinc-900 font-medium">Workouts</a>
           <a href="/goals" className="hover:text-zinc-900 transition-colors">Goals</a>
+          <a href="/goals" className="hover:text-zinc-900 transition-colors">Progress</a>
           <a href="/progress" className="rounded-full bg-zinc-900 text-white px-4 py-1.5 hover:bg-zinc-700 transition-colors">
             Log in
           </a>
@@ -98,7 +99,7 @@ export default function WorkoutsPage() {
                 <button
                   key={s}
                   onClick={() => { setSplit(s); setSaved(false); }}
-                  className="text-xs px-3 py-1 rounded-full border transition-all"
+                  className="text-xs px-3 py-1 rounded-full border transition-all cursor-pointer"
                   style={{
                     borderColor: split === s ? "#18181b" : "#e5e7eb",
                     backgroundColor: split === s ? "#18181b" : "transparent",
@@ -118,7 +119,7 @@ export default function WorkoutsPage() {
                 <button
                   key={u}
                   onClick={() => { setUnit(u); setSaved(false); }}
-                  className="text-xs px-3 py-1 rounded-full border transition-all"
+                  className="text-xs px-3 py-1 rounded-full border transition-all cursor-pointer"
                   style={{
                     borderColor: unit === u ? "#18181b" : "#e5e7eb",
                     backgroundColor: unit === u ? "#18181b" : "transparent",
@@ -149,7 +150,7 @@ export default function WorkoutsPage() {
                 {exercises.length > 1 && (
                   <button
                     onClick={() => removeExercise(ei)}
-                    className="text-zinc-300 hover:text-zinc-500 transition-colors text-xl leading-none ml-3"
+                    className="text-zinc-300 hover:text-zinc-500 transition-colors text-xl leading-none ml-3 cursor-pointer"
                   >
                     ×
                   </button>
@@ -212,7 +213,7 @@ export default function WorkoutsPage() {
                       {/* Remove set */}
                       <button
                         onClick={() => removeSet(ei, si)}
-                        className="text-zinc-300 hover:text-zinc-500 transition-colors text-base leading-none opacity-0 group-hover/row:opacity-100 mx-auto"
+                        className="text-zinc-300 hover:text-zinc-500 transition-colors text-base leading-none opacity-0 group-hover/row:opacity-100 mx-auto cursor-pointer"
                       >
                         ×
                       </button>
@@ -223,7 +224,7 @@ export default function WorkoutsPage() {
                 {/* Add set */}
                 <button
                   onClick={() => addSet(ei)}
-                  className="mt-3 w-full py-2 rounded-xl text-xs text-zinc-400 hover:text-zinc-600 hover:bg-zinc-50 transition-all flex items-center justify-center gap-1 border border-dashed border-zinc-200 hover:border-zinc-300"
+                  className="mt-3 w-full py-2 rounded-xl text-xs text-zinc-400 hover:text-zinc-600 hover:bg-zinc-50 transition-all flex items-center justify-center gap-1 border border-dashed border-zinc-200 hover:border-zinc-300 cursor-pointer"
                 >
                   + add set
                 </button>
@@ -235,7 +236,7 @@ export default function WorkoutsPage() {
         {/* Add exercise */}
         <button
           onClick={() => { setExercises((p) => [...p, emptyExercise()]); setSaved(false); }}
-          className="w-full py-4 rounded-2xl border border-dashed border-zinc-200 hover:border-zinc-400 text-sm text-zinc-400 hover:text-zinc-600 transition-all mb-10"
+          className="w-full py-4 rounded-2xl border border-dashed border-zinc-200 hover:border-zinc-400 text-sm text-zinc-400 hover:text-zinc-600 transition-all mb-10 cursor-pointer"
         >
           + Add Exercise
         </button>
@@ -250,7 +251,7 @@ export default function WorkoutsPage() {
           </span>
           <button
             onClick={() => setSaved(true)}
-            className="rounded-full bg-zinc-900 text-white text-sm px-8 py-2.5 hover:bg-zinc-700 transition-colors"
+            className="rounded-full bg-zinc-900 text-white text-sm px-8 py-2.5 hover:bg-zinc-700 transition-colors cursor-pointer"
           >
             Save Workout
           </button>

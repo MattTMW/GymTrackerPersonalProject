@@ -5,10 +5,10 @@ import Link from 'next/link';
 import { useState, useEffect } from "react";
 
 const phrases = [
-  "Minimal Tracking",
-  "Less Distractions",
-  "Better Lifting",
-  "Progress Made Simple",
+  "Minimalist Tracking",
+  "Progress Visualized",
+  "Personalized Insights",
+  "Simple Analysis",
 ];
 
 
@@ -36,9 +36,8 @@ export default function HomePage() {
       <nav className="flex items-center justify-between px-8 py-5 border-b border-zinc-100">
         <span className="text-lg font-bold tracking-tight">AYG.</span> 
         <div className="flex items-center gap-6 text-sm text-zinc-500">
-          <Link href="/workouts" className="hover:text-zinc-900 transition-colors">Workouts</Link>
-          <Link href="/goals" className="hover:text-zinc-900 transition-colors">Goals</Link>
-          <Link href="/progress" className="rounded-full bg-zinc-900 text-white px-4 py-1.5 hover:bg-zinc-700 transition-colors">
+          <Link href="/AboutMe" className="hover:text-zinc-900 transition-colors">About The Creator</Link>
+          <Link href="/LogInPage" className="rounded-full bg-zinc-900 text-white px-4 py-1.5 hover:bg-zinc-700 transition-colors">
             Log in
           </Link>
         </div>
@@ -57,6 +56,9 @@ export default function HomePage() {
           <a href="/workouts" className="rounded-lg border border-zinc-800 px-4 py-2 text-sm text-zinc-800 hover:bg-zinc-700 hover:text-white transition-colors">
             Workouts
           </a>
+          <a href="/progress" className="rounded-lg border border-zinc-800 px-4 py-2 text-sm text-zinc-800 hover:bg-zinc-700 hover:text-white transition-colors">
+            Progress
+          </a>
           <a href="/goals" className="rounded-lg border border-zinc-800 px-4 py-2 text-sm text-zinc-800 hover:bg-zinc-700 hover:text-white transition-colors">
             Goals
           </a>
@@ -65,3 +67,11 @@ export default function HomePage() {
     </div>
   );
 };
+
+
+//For Workouts the plan is to just track the user's workout data and store into database
+//For Progress, the plan is to visualize the user's progress over time using charts and graphs, as well as having an LLM to analyze
+//their data and give them insights and recommendations based on their progress and goals.
+//For Goals, the plan is to allow users to set and track their fitness goals, and provide them with personalized recommendations and insights based on their progress and goals.
+//Add funny notifications (Regular notifications and personalized notifcaitons)
+//"Sriram you're skipping leg day again? Pathetic."
