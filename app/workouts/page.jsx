@@ -12,6 +12,8 @@ export default function WorkoutsPage() {
   const [unit, setUnit] = useState("lbs");
   const [exercises, setExercises] = useState([emptyExercise()]);
   const [saved, setSaved] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState(null);
 
   const updateName = (ei, val) => {
     setSaved(false);
@@ -56,8 +58,30 @@ export default function WorkoutsPage() {
     setExercises((p) => p.filter((_, i) => i !== ei));
   };
 
+  const handleSave = async () => {
+    setSaving(true);
+    setError(null);
+    try {
+      const res = await fetch('/api/workouts', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ date, split, unit, exercises }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setSaved(true);
+      } else {
+        setError(data.error || 'Failed to save workout');
+      }
+    } catch (err) {
+      setError('Failed to save workout');
+    } finally {
+      setSaving(false);
+    }
+  };
+
   return (
-    <div className="min-h-screen text-zinc-800" style={{ backgroundColor: "#f7f7f5"}}>
+    <div className="min-h-screen text-zinc-800" style={{ backgroundColor: "#f7f7f5" }}>
 
       {/* Navbar */}
       <nav className="flex items-center justify-between px-8 py-5 bg-white border-b border-zinc-100">
@@ -243,17 +267,16 @@ export default function WorkoutsPage() {
 
         {/* Save */}
         <div className="flex items-center justify-between">
-          <span
-            className="text-sm text-zinc-400 transition-opacity duration-300"
-            style={{ opacity: saved ? 1 : 0 }}
-          >
-            Saved ✓
+          <span className="text-sm transition-opacity duration-300">
+            {saved && <span className="text-zinc-400">Saved ✓</span>}
+            {error && <span className="text-red-400">{error}</span>}
           </span>
           <button
-            onClick={() => setSaved(true)}
-            className="rounded-full bg-zinc-900 text-white text-sm px-8 py-2.5 hover:bg-zinc-700 transition-colors cursor-pointer"
+            onClick={handleSave}
+            disabled={saving}
+            className="rounded-full bg-zinc-900 text-white text-sm px-8 py-2.5 hover:bg-zinc-700 transition-colors cursor-pointer disabled:opacity-50"
           >
-            Save Workout
+            {saving ? 'Saving...' : 'Save Workout'}
           </button>
         </div>
 
